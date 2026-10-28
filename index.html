@@ -1,0 +1,1624 @@
+<!DOCTYPE html>
+<html lang="id" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Villa Thursina - Pure Serenity & Luxury Stay</title>
+    
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            darkMode: 'class',
+            theme: {
+                extend: {
+                    colors: {
+                        gold: {
+                            400: '#e5c158',
+                            500: '#D4AF37',
+                            600: '#b89228',
+                        },
+                        emerald: {
+                            800: '#0F5132',
+                            900: '#0B3B24',
+                            950: '#052214',
+                        },
+                        navy: {
+                            800: '#132238',
+                            900: '#0B192C',
+                        }
+                    },
+                    fontFamily: {
+                        sans: ['Inter', 'sans-serif'],
+                        serif: ['Playfair Display', 'serif']
+                    }
+                }
+            }
+        }
+    </script>
+    
+    <!-- Google Fonts & Font Awesome Icons -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Playfair+Display:ital,wght@0,600;0,700;1,400&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
+    <style>
+        .hero-overlay {
+            background: linear-gradient(180deg, rgba(11, 25, 44, 0.4) 0%, rgba(5, 34, 20, 0.85) 100%);
+        }
+        .glass-card {
+            background: rgba(255, 255, 255, 0.85);
+            backdrop-filter: blur(12px);
+        }
+        .dark .glass-card {
+            background: rgba(19, 34, 56, 0.85);
+            backdrop-filter: blur(12px);
+        }
+        .glass-nav {
+            backdrop-filter: blur(16px);
+        }
+        /* Custom scrollbar */
+        ::-webkit-scrollbar {
+            width: 8px;
+        }
+        ::-webkit-scrollbar-track {
+            background: #f1f1f1;
+        }
+        .dark ::-webkit-scrollbar-track {
+            background: #0B192C;
+        }
+        ::-webkit-scrollbar-thumb {
+            background: #D4AF37;
+            border-radius: 4px;
+        }
+        .carousel-slide {
+            transition: opacity 0.8s ease-in-out;
+        }
+    </style>
+</head>
+<body class="bg-slate-50 dark:bg-slate-950 text-slate-800 dark:text-slate-100 font-sans antialiased transition-colors duration-300">
+
+    <!-- Header & Navigation Bar -->
+    <nav class="fixed top-0 left-0 right-0 z-40 bg-emerald-950/85 dark:bg-navy-900/90 text-white glass-nav border-b border-emerald-800/40 dark:border-slate-800 transition-all duration-300" id="navbar">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex items-center justify-between h-20">
+                <!-- Brand Logo -->
+                <div class="flex items-center gap-3 cursor-pointer" onclick="scrollToSection('hero')">
+                    <div class="w-11 h-11 rounded-full bg-gold-500 flex items-center justify-center text-emerald-950 font-serif font-bold text-xl shadow-lg ring-2 ring-gold-400/50">
+                        VT
+                    </div>
+                    <div>
+                        <span class="font-serif text-2xl font-bold tracking-wide text-gold-400 block leading-tight">Thursina</span>
+                        <span class="text-[10px] uppercase tracking-widest text-emerald-200 dark:text-slate-400">Luxury Resort & Villa</span>
+                    </div>
+                </div>
+
+                <!-- Desktop Nav Links -->
+                <div class="hidden lg:flex items-center space-x-7 text-sm font-medium" id="desktop-nav">
+                    <a href="#hero" class="nav-link hover:text-gold-400 transition-colors py-1 border-b-2 border-transparent">Beranda</a>
+                    <a href="#search-bar" class="nav-link hover:text-gold-400 transition-colors py-1 border-b-2 border-transparent">Cek Ketersediaan</a>
+                    <a href="#villas" class="nav-link hover:text-gold-400 transition-colors py-1 border-b-2 border-transparent">Unit Villa</a>
+                    <a href="#booking" class="nav-link hover:text-gold-400 transition-colors py-1 border-b-2 border-transparent">Booking Engine</a>
+                    <a href="#facilities" class="nav-link hover:text-gold-400 transition-colors py-1 border-b-2 border-transparent">Fasilitas</a>
+                    <a href="#attractions" class="nav-link hover:text-gold-400 transition-colors py-1 border-b-2 border-transparent">Lokasi & Wisata</a>
+                    <a href="#reviews" class="nav-link hover:text-gold-400 transition-colors py-1 border-b-2 border-transparent">Ulasan</a>
+                    <a href="#faq" class="nav-link hover:text-gold-400 transition-colors py-1 border-b-2 border-transparent">FAQ</a>
+                </div>
+
+                <!-- Utilities (Dark mode toggle, Currency, Book CTA) -->
+                <div class="hidden lg:flex items-center space-x-4">
+                    <!-- Dark Mode Toggle Button -->
+                    <button id="theme-toggle" class="p-2.5 rounded-full bg-emerald-900/80 dark:bg-slate-800 text-gold-400 hover:text-white transition-all border border-gold-500/30" title="Toggle Mode Terang/Gelap">
+                        <i id="theme-toggle-icon" class="fa-solid fa-moon text-lg"></i>
+                    </button>
+
+                    <a href="#booking" class="bg-gradient-to-r from-gold-500 to-amber-500 hover:from-amber-500 hover:to-gold-500 text-emerald-950 px-5 py-2.5 rounded-full font-bold text-sm transition-all shadow-lg hover:shadow-gold-500/20 hover:-translate-y-0.5">
+                        <i class="fa-solid fa-calendar-check mr-1.5"></i>Pesan Sekarang
+                    </a>
+                </div>
+
+                <!-- Mobile Buttons -->
+                <div class="lg:hidden flex items-center space-x-3">
+                    <button id="theme-toggle-mobile" class="p-2 rounded-full text-gold-400 focus:outline-none">
+                        <i id="theme-toggle-icon-mobile" class="fa-solid fa-moon text-lg"></i>
+                    </button>
+                    <button id="mobile-menu-btn" class="text-2xl p-2 focus:outline-none text-gold-400">
+                        <i class="fa-solid fa-bars"></i>
+                    </button>
+                </div>
+            </div>
+        </div>
+
+        <!-- Mobile Navigation Drawer -->
+        <div id="mobile-menu" class="hidden lg:hidden bg-emerald-950 dark:bg-navy-900 border-t border-emerald-800/50 dark:border-slate-800 px-4 pt-3 pb-6 space-y-3">
+            <a href="#hero" class="mobile-link block px-3 py-2 rounded-xl hover:bg-emerald-900 dark:hover:bg-slate-800 text-slate-100">Beranda</a>
+            <a href="#search-bar" class="mobile-link block px-3 py-2 rounded-xl hover:bg-emerald-900 dark:hover:bg-slate-800 text-slate-100">Cek Ketersediaan</a>
+            <a href="#villas" class="mobile-link block px-3 py-2 rounded-xl hover:bg-emerald-900 dark:hover:bg-slate-800 text-slate-100">Unit Villa</a>
+            <a href="#booking" class="mobile-link block px-3 py-2 rounded-xl hover:bg-emerald-900 dark:hover:bg-slate-800 text-slate-100">Booking Engine</a>
+            <a href="#facilities" class="mobile-link block px-3 py-2 rounded-xl hover:bg-emerald-900 dark:hover:bg-slate-800 text-slate-100">Fasilitas</a>
+            <a href="#attractions" class="mobile-link block px-3 py-2 rounded-xl hover:bg-emerald-900 dark:hover:bg-slate-800 text-slate-100">Lokasi & Wisata</a>
+            <a href="#reviews" class="mobile-link block px-3 py-2 rounded-xl hover:bg-emerald-900 dark:hover:bg-slate-800 text-slate-100">Ulasan</a>
+            <a href="#faq" class="mobile-link block px-3 py-2 rounded-xl hover:bg-emerald-900 dark:hover:bg-slate-800 text-slate-100">FAQ</a>
+            <a href="#booking" class="mobile-link block w-full text-center bg-gold-500 text-emerald-950 font-bold py-3 rounded-xl shadow-md">Pesan Sekarang</a>
+        </div>
+    </nav>
+
+    <!-- Hero Section with Carousel Slider -->
+    <section id="hero" class="relative min-h-screen flex items-center justify-center pt-20 overflow-hidden">
+        <!-- Carousel Background Slides -->
+        <div id="hero-carousel" class="absolute inset-0 z-0">
+            <div class="carousel-slide absolute inset-0 bg-cover bg-center opacity-100 duration-1000" style="background-image: url('https://images.unsplash.com/photo-1580587771525-78b9dba3b914?auto=format&fit=crop&w=1920&q=80');"></div>
+            <div class="carousel-slide absolute inset-0 bg-cover bg-center opacity-0 duration-1000" style="background-image: url('https://images.unsplash.com/photo-1613977257363-707ba9348227?auto=format&fit=crop&w=1920&q=80');"></div>
+            <div class="carousel-slide absolute inset-0 bg-cover bg-center opacity-0 duration-1000" style="background-image: url('https://images.unsplash.com/photo-1512917774080-9991f1c4c750?auto=format&fit=crop&w=1920&q=80');"></div>
+        </div>
+
+        <div class="absolute inset-0 hero-overlay z-10"></div>
+
+        <!-- Floating Rating Badge -->
+        <div class="absolute top-28 right-6 sm:right-12 z-20 hidden md:flex items-center gap-3 bg-slate-900/80 backdrop-blur-md border border-gold-500/40 text-white px-4 py-2.5 rounded-2xl shadow-2xl animate-bounce">
+            <div class="text-gold-400 text-xl font-bold flex items-center gap-1">
+                <i class="fa-solid fa-star"></i> 4.9
+            </div>
+            <div class="text-left border-l border-slate-700 pl-3">
+                <p class="text-xs font-semibold">Sangat Memuaskan</p>
+                <p class="text-[10px] text-slate-300">Dari 350+ Ulasan Tamu</p>
+            </div>
+        </div>
+
+        <!-- Hero Content -->
+        <div class="relative z-20 max-w-5xl mx-auto px-4 text-center text-white py-20">
+            <span class="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-emerald-900/90 border border-gold-500/50 text-gold-300 font-medium text-xs sm:text-sm mb-6 tracking-wider uppercase backdrop-blur-md shadow-lg">
+                <i class="fa-solid fa-gem text-gold-400"></i> Resort & Villa Mewah Puncak
+            </span>
+            <h1 class="font-serif text-4xl sm:text-6xl lg:text-7xl font-bold leading-tight mb-6 text-slate-100 drop-shadow-md">
+                Keindahan Alam & Kemewahan Sejati di <br><span class="text-gold-400 italic">Villa Thursina</span>
+            </h1>
+            <p class="text-base sm:text-xl text-slate-200 max-w-3xl mx-auto font-light leading-relaxed mb-10">
+                Temukan ketenangan privasi tingkat tinggi, pemandangan lembah pegunungan yang megah, kolam renang pribadi, dan pelayanan eksklusif bintang lima.
+            </p>
+            
+            <div class="flex flex-col sm:flex-row gap-4 justify-center items-center">
+                <a href="#villas" class="w-full sm:w-auto bg-gradient-to-r from-gold-500 to-amber-500 hover:from-amber-500 hover:to-gold-500 text-emerald-950 font-bold px-8 py-4 rounded-full shadow-xl hover:shadow-gold-500/30 transition-all transform hover:-translate-y-1 text-center">
+                    <i class="fa-solid fa-compass mr-2"></i> Jelajahi Unit Villa
+                </a>
+                <a href="#search-bar" class="w-full sm:w-auto bg-emerald-950/80 hover:bg-emerald-900 text-white border border-gold-500/40 backdrop-blur-md font-semibold px-8 py-4 rounded-full transition-all text-center">
+                    <i class="fa-solid fa-magnifying-glass mr-2"></i> Cek Ketersediaan
+                </a>
+            </div>
+
+            <!-- Carousel Indicators -->
+            <div class="flex justify-center gap-3 mt-12" id="hero-indicators">
+                <button class="w-10 h-2 rounded-full bg-gold-400 transition-all" onclick="setHeroSlide(0)"></button>
+                <button class="w-3 h-2 rounded-full bg-white/50 hover:bg-white transition-all" onclick="setHeroSlide(1)"></button>
+                <button class="w-3 h-2 rounded-full bg-white/50 hover:bg-white transition-all" onclick="setHeroSlide(2)"></button>
+            </div>
+        </div>
+    </section>
+
+    <!-- Filter & Search Bar Interaktif (Availability Bar) -->
+    <section id="search-bar" class="relative z-30 -mt-14 max-w-6xl mx-auto px-4">
+        <div class="bg-white dark:bg-navy-900 p-6 sm:p-8 rounded-3xl shadow-2xl border border-slate-200/80 dark:border-slate-800 transition-colors">
+            <form id="quick-search-form" class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-5 gap-4 items-end">
+                <!-- Check-in -->
+                <div>
+                    <label class="block text-xs font-bold uppercase tracking-wider text-slate-500 dark:text-slate-400 mb-2">
+                        <i class="fa-solid fa-calendar-day text-gold-500 mr-1.5"></i> Check-In
+                    </label>
+                    <input type="date" id="search-checkin" class="w-full bg-slate-50 dark:bg-slate-800 border border-slate-300 dark:border-slate-700 rounded-xl px-3.5 py-2.5 text-sm focus:ring-2 focus:ring-gold-500 focus:outline-none dark:text-white" required>
+                </div>
+
+                <!-- Check-out -->
+                <div>
+                    <label class="block text-xs font-bold uppercase tracking-wider text-slate-500 dark:text-slate-400 mb-2">
+                        <i class="fa-solid fa-calendar-check text-gold-500 mr-1.5"></i> Check-Out
+                    </label>
+                    <input type="date" id="search-checkout" class="w-full bg-slate-50 dark:bg-slate-800 border border-slate-300 dark:border-slate-700 rounded-xl px-3.5 py-2.5 text-sm focus:ring-2 focus:ring-gold-500 focus:outline-none dark:text-white" required>
+                </div>
+
+                <!-- Guests Stepper -->
+                <div>
+                    <label class="block text-xs font-bold uppercase tracking-wider text-slate-500 dark:text-slate-400 mb-2">
+                        <i class="fa-solid fa-users text-gold-500 mr-1.5"></i> Jumlah Tamu
+                    </label>
+                    <select id="search-guests" class="w-full bg-slate-50 dark:bg-slate-800 border border-slate-300 dark:border-slate-700 rounded-xl px-3.5 py-2.5 text-sm focus:ring-2 focus:ring-gold-500 focus:outline-none dark:text-white">
+                        <option value="2">2 Orang (Pasangan)</option>
+                        <option value="4">4 Orang (Keluarga Kecil)</option>
+                        <option value="8" selected>8 Orang (Keluarga Sedang)</option>
+                        <option value="15">15+ Orang (Rombongan)</option>
+                    </select>
+                </div>
+
+                <!-- Villa Type -->
+                <div>
+                    <label class="block text-xs font-bold uppercase tracking-wider text-slate-500 dark:text-slate-400 mb-2">
+                        <i class="fa-solid fa-house-chimney text-gold-500 mr-1.5"></i> Tipe Unit
+                    </label>
+                    <select id="search-type" class="w-full bg-slate-50 dark:bg-slate-800 border border-slate-300 dark:border-slate-700 rounded-xl px-3.5 py-2.5 text-sm focus:ring-2 focus:ring-gold-500 focus:outline-none dark:text-white">
+                        <option value="all">Semua Tipe Villa</option>
+                        <option value="suite">Royal Suite</option>
+                        <option value="deluxe">Family Deluxe</option>
+                        <option value="cabin">Executive Cabin</option>
+                        <option value="luxury">Luxury Grand Mansion</option>
+                    </select>
+                </div>
+
+                <!-- Submit Search Button -->
+                <div>
+                    <button type="submit" class="w-full bg-emerald-800 hover:bg-emerald-900 text-white font-bold py-2.5 px-4 rounded-xl shadow-md transition-all flex items-center justify-center gap-2">
+                        <i class="fa-solid fa-magnifying-glass"></i> Cek Ketersediaan
+                    </button>
+                </div>
+            </form>
+
+            <!-- Search Live Indicator Bar -->
+            <div id="search-status-bar" class="mt-4 pt-4 border-t border-slate-200 dark:border-slate-800 flex flex-wrap justify-between items-center text-xs text-slate-600 dark:text-slate-400 gap-2">
+                <div>
+                    <span id="search-summary-text" class="font-semibold text-emerald-800 dark:text-gold-400">
+                        <i class="fa-solid fa-circle-check text-emerald-600 mr-1"></i> Silakan tentukan tanggal untuk mengecek unit yang tersedia.
+                    </span>
+                </div>
+                <div class="flex gap-3">
+                    <span class="bg-emerald-100 text-emerald-900 dark:bg-emerald-950 dark:text-emerald-300 font-medium px-2.5 py-1 rounded-md">
+                        Durasi: <strong id="calc-search-nights">1 Malam</strong>
+                    </span>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Quick Stats -->
+    <section class="py-16">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="grid grid-cols-2 lg:grid-cols-4 gap-6">
+                <div class="p-6 rounded-2xl bg-white dark:bg-navy-900 border border-slate-200 dark:border-slate-800 shadow-sm text-center">
+                    <div class="w-12 h-12 bg-emerald-100 dark:bg-emerald-900/50 text-emerald-800 dark:text-emerald-300 rounded-2xl flex items-center justify-center text-2xl mx-auto mb-3">
+                        <i class="fa-solid fa-mountain"></i>
+                    </div>
+                    <h3 class="text-2xl sm:text-3xl font-bold text-emerald-950 dark:text-slate-100">1.200 MDPL</h3>
+                    <p class="text-xs text-slate-500 dark:text-slate-400 mt-1">Udara Sejuk Pegunungan</p>
+                </div>
+
+                <div class="p-6 rounded-2xl bg-white dark:bg-navy-900 border border-slate-200 dark:border-slate-800 shadow-sm text-center">
+                    <div class="w-12 h-12 bg-amber-100 dark:bg-amber-900/50 text-amber-800 dark:text-gold-400 rounded-2xl flex items-center justify-center text-2xl mx-auto mb-3">
+                        <i class="fa-solid fa-water-ladder"></i>
+                    </div>
+                    <h3 class="text-2xl sm:text-3xl font-bold text-emerald-950 dark:text-slate-100">Private Pool</h3>
+                    <p class="text-xs text-slate-500 dark:text-slate-400 mt-1">Kolam Heated di Setiap Unit</p>
+                </div>
+
+                <div class="p-6 rounded-2xl bg-white dark:bg-navy-900 border border-slate-200 dark:border-slate-800 shadow-sm text-center">
+                    <div class="w-12 h-12 bg-emerald-100 dark:bg-emerald-900/50 text-emerald-800 dark:text-emerald-300 rounded-2xl flex items-center justify-center text-2xl mx-auto mb-3">
+                        <i class="fa-solid fa-shield-halved"></i>
+                    </div>
+                    <h3 class="text-2xl sm:text-3xl font-bold text-emerald-950 dark:text-slate-100">24/7 Security</h3>
+                    <p class="text-xs text-slate-500 dark:text-slate-400 mt-1">Area Privasi Terjaga</p>
+                </div>
+
+                <div class="p-6 rounded-2xl bg-white dark:bg-navy-900 border border-slate-200 dark:border-slate-800 shadow-sm text-center">
+                    <div class="w-12 h-12 bg-amber-100 dark:bg-amber-900/50 text-amber-800 dark:text-gold-400 rounded-2xl flex items-center justify-center text-2xl mx-auto mb-3">
+                        <i class="fa-solid fa-face-smile"></i>
+                    </div>
+                    <h3 class="text-2xl sm:text-3xl font-bold text-emerald-950 dark:text-slate-100">99.4%</h3>
+                    <p class="text-xs text-slate-500 dark:text-slate-400 mt-1">Kepuasan Tamu Menginap</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Villa Catalog Section -->
+    <section id="villas" class="py-20 bg-slate-100/70 dark:bg-navy-900/50 transition-colors">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex flex-col md:flex-row md:items-end justify-between mb-12">
+                <div>
+                    <h2 class="text-gold-500 uppercase tracking-widest text-xs font-bold mb-2">Pilihan Akomodasi Mewah</h2>
+                    <h3 class="font-serif text-3xl sm:text-4xl font-bold text-emerald-950 dark:text-slate-100">Katalog Unit Villa Thursina</h3>
+                </div>
+                <p class="text-slate-500 dark:text-slate-400 text-sm max-w-md mt-3 md:mt-0">
+                    Setiap unit mengusung estetika arsitektur tropis modern dengan fasilitas lengkap kelas atas.
+                </p>
+            </div>
+
+            <!-- Villa Sorting & Layout Switcher Controls -->
+            <div class="bg-white dark:bg-navy-900 p-4 rounded-2xl shadow-sm border border-slate-200 dark:border-slate-800 mb-8 flex flex-col md:flex-row justify-between items-center gap-4">
+                <!-- Category Tabs -->
+                <div class="flex flex-wrap gap-2" id="category-tabs">
+                    <button class="cat-tab active px-4 py-2 rounded-xl text-xs font-bold transition-all bg-emerald-800 text-white" data-cat="all">Semua Unit</button>
+                    <button class="cat-tab px-4 py-2 rounded-xl text-xs font-bold transition-all bg-slate-100 dark:bg-slate-800 text-slate-600 dark:text-slate-300 hover:bg-slate-200" data-cat="suite">Royal Suite</button>
+                    <button class="cat-tab px-4 py-2 rounded-xl text-xs font-bold transition-all bg-slate-100 dark:bg-slate-800 text-slate-600 dark:text-slate-300 hover:bg-slate-200" data-cat="deluxe">Family Deluxe</button>
+                    <button class="cat-tab px-4 py-2 rounded-xl text-xs font-bold transition-all bg-slate-100 dark:bg-slate-800 text-slate-600 dark:text-slate-300 hover:bg-slate-200" data-cat="cabin">Executive Cabin</button>
+                    <button class="cat-tab px-4 py-2 rounded-xl text-xs font-bold transition-all bg-slate-100 dark:bg-slate-800 text-slate-600 dark:text-slate-300 hover:bg-slate-200" data-cat="luxury">Grand Mansion</button>
+                </div>
+
+                <div class="flex items-center gap-3 w-full md:w-auto justify-end">
+                    <!-- Sort By Select -->
+                    <select id="sort-villas" class="bg-slate-50 dark:bg-slate-800 border border-slate-300 dark:border-slate-700 text-xs rounded-xl px-3 py-2 text-slate-700 dark:text-slate-200 focus:outline-none">
+                        <option value="default">Urutkan: Rekomendasi</option>
+                        <option value="price-low">Harga: Terrendah ke Tertinggi</option>
+                        <option value="price-high">Harga: Tertinggi ke Terrendah</option>
+                        <option value="capacity">Kapasitas Tamu Terbesar</option>
+                    </select>
+
+                    <!-- Layout Toggle Grid/List -->
+                    <div class="flex border border-slate-200 dark:border-slate-700 rounded-xl overflow-hidden p-0.5 bg-slate-50 dark:bg-slate-800">
+                        <button id="view-grid-btn" class="p-1.5 px-3 rounded-lg text-emerald-800 dark:text-gold-400 bg-white dark:bg-navy-900 shadow-sm"><i class="fa-solid fa-border-all"></i></button>
+                        <button id="view-list-btn" class="p-1.5 px-3 rounded-lg text-slate-400 hover:text-slate-700 dark:hover:text-slate-200"><i class="fa-solid fa-list"></i></button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Dynamic Villa Cards Container -->
+            <div id="villas-container" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+                <!-- Javascript will load items here -->
+            </div>
+        </div>
+    </section>
+
+    <!-- Interactive Booking Engine Section -->
+    <section id="booking" class="py-20 bg-emerald-950 text-white relative overflow-hidden">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+            <div class="text-center max-w-3xl mx-auto mb-12">
+                <span class="text-gold-400 uppercase tracking-widest text-xs font-bold mb-2 block"><i class="fa-solid fa-calculator mr-1"></i> Interactive Booking Calculator</span>
+                <h2 class="font-serif text-3xl sm:text-4xl font-bold">Kalkulasi & Reservasi Online</h2>
+                <p class="text-emerald-200 text-sm mt-2">Dapatkan estimasi biaya transparan secara otomatis beserta potongan diskon promo.</p>
+            </div>
+
+            <div class="grid grid-cols-1 lg:grid-cols-12 gap-8 items-start">
+                
+                <!-- Main Form Inputs -->
+                <div class="lg:col-span-8 bg-white dark:bg-navy-900 text-slate-800 dark:text-slate-100 p-6 sm:p-8 rounded-3xl shadow-2xl border border-emerald-800/30">
+                    <form id="booking-form" class="space-y-6">
+                        
+                        <!-- Unit Villa Selection -->
+                        <div>
+                            <label class="block text-sm font-bold text-emerald-950 dark:text-gold-400 mb-2">
+                                <i class="fa-solid fa-house-chimney text-emerald-700 dark:text-gold-400 mr-2"></i>Pilih Tipe Villa
+                            </label>
+                            <select id="booking-villa" class="w-full bg-slate-50 dark:bg-slate-800 border border-slate-300 dark:border-slate-700 rounded-xl px-4 py-3 focus:ring-2 focus:ring-gold-500 focus:outline-none font-medium text-slate-800 dark:text-white">
+                                <!-- Populated dynamically -->
+                            </select>
+                        </div>
+
+                        <!-- Date Pickers -->
+                        <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                            <div>
+                                <label class="block text-sm font-bold text-emerald-950 dark:text-gold-400 mb-2">
+                                    <i class="fa-solid fa-calendar-check text-emerald-700 dark:text-gold-400 mr-2"></i>Check-in
+                                </label>
+                                <input type="date" id="booking-checkin" class="w-full bg-slate-50 dark:bg-slate-800 border border-slate-300 dark:border-slate-700 rounded-xl px-4 py-3 focus:ring-2 focus:ring-gold-500 focus:outline-none dark:text-white" required>
+                            </div>
+                            <div>
+                                <label class="block text-sm font-bold text-emerald-950 dark:text-gold-400 mb-2">
+                                    <i class="fa-solid fa-calendar-xmark text-emerald-700 dark:text-gold-400 mr-2"></i>Check-out
+                                </label>
+                                <input type="date" id="booking-checkout" class="w-full bg-slate-50 dark:bg-slate-800 border border-slate-300 dark:border-slate-700 rounded-xl px-4 py-3 focus:ring-2 focus:ring-gold-500 focus:outline-none dark:text-white" required>
+                            </div>
+                        </div>
+
+                        <!-- Guests Counts -->
+                        <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                            <div>
+                                <label class="block text-sm font-bold text-emerald-950 dark:text-gold-400 mb-2">
+                                    <i class="fa-solid fa-user-large text-emerald-700 dark:text-gold-400 mr-2"></i>Tamu Dewasa
+                                </label>
+                                <input type="number" id="booking-adults" min="1" max="40" value="2" class="w-full bg-slate-50 dark:bg-slate-800 border border-slate-300 dark:border-slate-700 rounded-xl px-4 py-3 focus:ring-2 focus:ring-gold-500 focus:outline-none dark:text-white">
+                            </div>
+                            <div>
+                                <label class="block text-sm font-bold text-emerald-950 dark:text-gold-400 mb-2">
+                                    <i class="fa-solid fa-child text-emerald-700 dark:text-gold-400 mr-2"></i>Anak-anak (< 10 Thn)
+                                </label>
+                                <input type="number" id="booking-children" min="0" max="20" value="0" class="w-full bg-slate-50 dark:bg-slate-800 border border-slate-300 dark:border-slate-700 rounded-xl px-4 py-3 focus:ring-2 focus:ring-gold-500 focus:outline-none dark:text-white">
+                            </div>
+                        </div>
+
+                        <!-- Add-ons Selection -->
+                        <div>
+                            <label class="block text-sm font-bold text-emerald-950 dark:text-gold-400 mb-3">
+                                <i class="fa-solid fa-concierge-bell text-emerald-700 dark:text-gold-400 mr-2"></i>Layanan Tambahan (Add-ons Opsional)
+                            </label>
+                            <div class="grid grid-cols-1 sm:grid-cols-2 gap-3" id="addons-container">
+                                <!-- Checkboxes generated dynamically -->
+                            </div>
+                        </div>
+
+                        <!-- Coupon / Promo Discount Code -->
+                        <div class="border-t border-slate-200 dark:border-slate-800 pt-6">
+                            <label class="block text-xs font-bold uppercase tracking-wider text-slate-500 dark:text-slate-400 mb-2">
+                                <i class="fa-solid fa-ticket text-gold-500 mr-1.5"></i> Gunakan Kode Promo / Diskon
+                            </label>
+                            <div class="flex gap-2">
+                                <input type="text" id="coupon-input" placeholder="Masukkan kode e.g. THURSINA10" class="uppercase bg-slate-50 dark:bg-slate-800 border border-slate-300 dark:border-slate-700 rounded-xl px-4 py-2.5 text-sm w-full focus:ring-2 focus:ring-gold-500 focus:outline-none dark:text-white">
+                                <button type="button" id="apply-coupon-btn" class="bg-slate-800 hover:bg-slate-900 text-white font-bold text-xs px-5 py-2.5 rounded-xl transition-all whitespace-nowrap">
+                                    Terapkan
+                                </button>
+                            </div>
+                            <p id="coupon-message" class="text-xs mt-2 hidden font-medium"></p>
+                        </div>
+
+                        <!-- Guest Personal Details -->
+                        <div class="border-t border-slate-200 dark:border-slate-800 pt-6 space-y-4">
+                            <h4 class="font-bold text-emerald-950 dark:text-gold-400 text-base">Informasi Kontak Pemesan</h4>
+                            
+                            <div>
+                                <label class="block text-xs font-semibold text-slate-600 dark:text-slate-400 uppercase mb-1">Nama Lengkap</label>
+                                <input type="text" id="cust-name" placeholder="Nama sesuai KTP" class="w-full bg-slate-50 dark:bg-slate-800 border border-slate-300 dark:border-slate-700 rounded-xl px-4 py-2.5 text-sm focus:ring-2 focus:ring-gold-500 focus:outline-none dark:text-white" required>
+                            </div>
+                            <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                                <div>
+                                    <label class="block text-xs font-semibold text-slate-600 dark:text-slate-400 uppercase mb-1">Alamat Email</label>
+                                    <input type="email" id="cust-email" placeholder="email@contoh.com" class="w-full bg-slate-50 dark:bg-slate-800 border border-slate-300 dark:border-slate-700 rounded-xl px-4 py-2.5 text-sm focus:ring-2 focus:ring-gold-500 focus:outline-none dark:text-white" required>
+                                </div>
+                                <div>
+                                    <label class="block text-xs font-semibold text-slate-600 dark:text-slate-400 uppercase mb-1">Nomor WhatsApp</label>
+                                    <input type="tel" id="cust-phone" placeholder="081234567890" class="w-full bg-slate-50 dark:bg-slate-800 border border-slate-300 dark:border-slate-700 rounded-xl px-4 py-2.5 text-sm focus:ring-2 focus:ring-gold-500 focus:outline-none dark:text-white" required>
+                                </div>
+                            </div>
+                            <div>
+                                <label class="block text-xs font-semibold text-slate-600 dark:text-slate-400 uppercase mb-1">Catatan Khusus (Opsional)</label>
+                                <textarea id="cust-notes" rows="2" placeholder="Permintaan khusus seperti late check-in atau dekorasi ulang tahun..." class="w-full bg-slate-50 dark:bg-slate-800 border border-slate-300 dark:border-slate-700 rounded-xl px-4 py-2.5 text-sm focus:ring-2 focus:ring-gold-500 focus:outline-none dark:text-white"></textarea>
+                            </div>
+                        </div>
+
+                        <button type="submit" class="w-full bg-gradient-to-r from-gold-500 to-amber-500 hover:from-amber-500 hover:to-gold-500 text-emerald-950 font-extrabold text-base py-4 rounded-xl shadow-xl transition-all transform hover:-translate-y-0.5">
+                            <i class="fa-solid fa-file-invoice-dollar mr-2"></i> Tinjau Ringkasan & Lanjut Pembayaran
+                        </button>
+                    </form>
+                </div>
+
+                <!-- Live Summary Calculation Card -->
+                <div class="lg:col-span-4 bg-emerald-900/90 dark:bg-navy-900/90 backdrop-blur-md p-6 rounded-3xl border border-emerald-700/50 dark:border-slate-800 sticky top-28 shadow-2xl">
+                    <h3 class="font-serif text-xl font-bold text-gold-400 mb-4 pb-3 border-b border-emerald-800 dark:border-slate-800 flex items-center justify-between">
+                        <span><i class="fa-solid fa-receipt mr-2"></i> Rincian Biaya</span>
+                        <span class="text-xs text-emerald-300 font-sans font-normal">Real-time</span>
+                    </h3>
+
+                    <div class="space-y-3 text-sm">
+                        <div class="flex justify-between text-emerald-200 dark:text-slate-300">
+                            <span>Tipe Unit:</span>
+                            <span id="calc-villa-name" class="font-semibold text-white">--</span>
+                        </div>
+                        <div class="flex justify-between text-emerald-200 dark:text-slate-300">
+                            <span>Harga Sewa / Malam:</span>
+                            <span id="calc-villa-price" class="font-semibold text-white">Rp 0</span>
+                        </div>
+                        <div class="flex justify-between text-emerald-200 dark:text-slate-300">
+                            <span>Durasi Menginap:</span>
+                            <span id="calc-nights" class="font-semibold text-gold-400">0 Malam</span>
+                        </div>
+                        <div class="flex justify-between text-emerald-200 dark:text-slate-300">
+                            <span>Total Tamu:</span>
+                            <span id="calc-guests" class="font-semibold text-white">0 Orang</span>
+                        </div>
+
+                        <div class="border-t border-emerald-800/80 dark:border-slate-800 pt-3">
+                            <span class="block text-emerald-300 dark:text-slate-400 text-xs font-semibold mb-2">Layanan Tambahan:</span>
+                            <div id="calc-addons-list" class="text-xs space-y-1 text-slate-300 italic">
+                                Belum ada opsi dipilih
+                            </div>
+                        </div>
+
+                        <!-- Price Breakdown -->
+                        <div class="border-t border-emerald-800/80 dark:border-slate-800 pt-3 space-y-1 text-xs">
+                            <div class="flex justify-between text-emerald-200">
+                                <span>Subtotal Sewa:</span>
+                                <span id="calc-subtotal" class="font-semibold text-white">Rp 0</span>
+                            </div>
+                            <div class="flex justify-between text-emerald-200">
+                                <span>Subtotal Add-ons:</span>
+                                <span id="calc-addons-subtotal" class="font-semibold text-white">Rp 0</span>
+                            </div>
+                            <div id="calc-discount-row" class="flex justify-between text-emerald-300 hidden">
+                                <span>Diskon Promo:</span>
+                                <span id="calc-discount-val" class="font-bold text-emerald-300">-Rp 0</span>
+                            </div>
+                        </div>
+
+                        <div class="border-t border-emerald-700 dark:border-slate-700 pt-4 mt-4">
+                            <div class="flex justify-between items-baseline">
+                                <span class="text-emerald-100 dark:text-slate-200 font-semibold">Total Est. Bayar:</span>
+                                <span id="calc-total" class="text-2xl font-bold text-gold-400">Rp 0</span>
+                            </div>
+                            <p class="text-[11px] text-emerald-300/80 mt-1">*Sudah termasuk pajak & service charge.</p>
+                        </div>
+                    </div>
+
+                    <div class="mt-6 p-4 rounded-2xl bg-emerald-950/80 dark:bg-slate-900 border border-emerald-800 dark:border-slate-800 text-xs text-emerald-200 dark:text-slate-300 space-y-2">
+                        <p><i class="fa-solid fa-shield-halved text-gold-400 mr-1.5"></i><strong>Konfirmasi Instan:</strong> Data pesanan akan diforward langsung ke WhatsApp resmi Villa Thursina.</p>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+    <!-- Facilities Section -->
+    <section id="facilities" class="py-20 bg-white dark:bg-navy-900 transition-colors">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center max-w-3xl mx-auto mb-16">
+                <h2 class="text-gold-500 uppercase tracking-widest text-xs font-bold mb-2">Fasilitas Eksklusif</h2>
+                <h3 class="font-serif text-3xl sm:text-4xl font-bold text-emerald-950 dark:text-slate-100">Kenyamanan & Hiburan Tanpa Batas</h3>
+            </div>
+
+            <div class="grid grid-cols-2 md:grid-cols-4 gap-6">
+                <div class="p-6 rounded-2xl bg-slate-50 dark:bg-slate-800/50 border border-slate-200/80 dark:border-slate-800 text-center hover:scale-105 transition-all">
+                    <div class="w-14 h-14 bg-emerald-100 dark:bg-emerald-900/50 text-emerald-800 dark:text-emerald-300 rounded-2xl flex items-center justify-center text-2xl mx-auto mb-4">
+                        <i class="fa-solid fa-water-ladder"></i>
+                    </div>
+                    <h4 class="font-bold text-emerald-950 dark:text-slate-100 mb-1 text-sm sm:text-base">Infinity Heated Pool</h4>
+                    <p class="text-xs text-slate-500 dark:text-slate-400">Kolam renang hangat dengan pemandangan lembah pegunungan.</p>
+                </div>
+
+                <div class="p-6 rounded-2xl bg-slate-50 dark:bg-slate-800/50 border border-slate-200/80 dark:border-slate-800 text-center hover:scale-105 transition-all">
+                    <div class="w-14 h-14 bg-amber-100 dark:bg-amber-900/50 text-amber-800 dark:text-gold-400 rounded-2xl flex items-center justify-center text-2xl mx-auto mb-4">
+                        <i class="fa-solid fa-fire"></i>
+                    </div>
+                    <h4 class="font-bold text-emerald-950 dark:text-slate-100 mb-1 text-sm sm:text-base">BBQ & Fire Pit Ground</h4>
+                    <p class="text-xs text-slate-500 dark:text-slate-400">Area memanggang outdoor lengkap dan perapian hangat.</p>
+                </div>
+
+                <div class="p-6 rounded-2xl bg-slate-50 dark:bg-slate-800/50 border border-slate-200/80 dark:border-slate-800 text-center hover:scale-105 transition-all">
+                    <div class="w-14 h-14 bg-emerald-100 dark:bg-emerald-900/50 text-emerald-800 dark:text-emerald-300 rounded-2xl flex items-center justify-center text-2xl mx-auto mb-4">
+                        <i class="fa-solid fa-tv"></i>
+                    </div>
+                    <h4 class="font-bold text-emerald-950 dark:text-slate-100 mb-1 text-sm sm:text-base">Entertainment Room</h4>
+                    <p class="text-xs text-slate-500 dark:text-slate-400">Karaoke set, Meja Billiard, & Smart TV 65" Netflix.</p>
+                </div>
+
+                <div class="p-6 rounded-2xl bg-slate-50 dark:bg-slate-800/50 border border-slate-200/80 dark:border-slate-800 text-center hover:scale-105 transition-all">
+                    <div class="w-14 h-14 bg-amber-100 dark:bg-amber-900/50 text-amber-800 dark:text-gold-400 rounded-2xl flex items-center justify-center text-2xl mx-auto mb-4">
+                        <i class="fa-solid fa-utensils"></i>
+                    </div>
+                    <h4 class="font-bold text-emerald-950 dark:text-slate-100 mb-1 text-sm sm:text-base">Dapur Chef Lengkap</h4>
+                    <p class="text-xs text-slate-500 dark:text-slate-400">Peralatan memasak modern, kulkas dua pintu, & microwave.</p>
+                </div>
+            </div>
+
+            <!-- Lightbox Photo Gallery -->
+            <div class="mt-16">
+                <h4 class="text-center font-serif text-2xl font-bold text-emerald-950 dark:text-slate-100 mb-8">Galeri Foto Villa (Klik untuk Memperbesar)</h4>
+                <div class="grid grid-cols-2 md:grid-cols-4 gap-4" id="lightbox-gallery">
+                    <div class="cursor-pointer overflow-hidden rounded-2xl group relative" onclick="openLightbox(0)">
+                        <img src="https://images.unsplash.com/photo-1613977257363-707ba9348227?auto=format&fit=crop&w=600&q=80" class="w-full h-48 object-cover group-hover:scale-110 transition-all duration-500">
+                        <div class="absolute inset-0 bg-black/40 opacity-0 group-hover:opacity-100 transition-all flex items-center justify-center text-white"><i class="fa-solid fa-magnifying-glass-plus text-2xl"></i></div>
+                    </div>
+                    <div class="cursor-pointer overflow-hidden rounded-2xl group relative" onclick="openLightbox(1)">
+                        <img src="https://images.unsplash.com/photo-1580587771525-78b9dba3b914?auto=format&fit=crop&w=600&q=80" class="w-full h-48 object-cover group-hover:scale-110 transition-all duration-500">
+                        <div class="absolute inset-0 bg-black/40 opacity-0 group-hover:opacity-100 transition-all flex items-center justify-center text-white"><i class="fa-solid fa-magnifying-glass-plus text-2xl"></i></div>
+                    </div>
+                    <div class="cursor-pointer overflow-hidden rounded-2xl group relative" onclick="openLightbox(2)">
+                        <img src="https://images.unsplash.com/photo-1512917774080-9991f1c4c750?auto=format&fit=crop&w=600&q=80" class="w-full h-48 object-cover group-hover:scale-110 transition-all duration-500">
+                        <div class="absolute inset-0 bg-black/40 opacity-0 group-hover:opacity-100 transition-all flex items-center justify-center text-white"><i class="fa-solid fa-magnifying-glass-plus text-2xl"></i></div>
+                    </div>
+                    <div class="cursor-pointer overflow-hidden rounded-2xl group relative" onclick="openLightbox(3)">
+                        <img src="https://images.unsplash.com/photo-1600585154340-be6161a56a0c?auto=format&fit=crop&w=600&q=80" class="w-full h-48 object-cover group-hover:scale-110 transition-all duration-500">
+                        <div class="absolute inset-0 bg-black/40 opacity-0 group-hover:opacity-100 transition-all flex items-center justify-center text-white"><i class="fa-solid fa-magnifying-glass-plus text-2xl"></i></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Location & Nearby Attractions Section -->
+    <section id="attractions" class="py-20 bg-slate-100/70 dark:bg-navy-900/50">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center max-w-3xl mx-auto mb-12">
+                <h2 class="text-gold-500 uppercase tracking-widest text-xs font-bold mb-2">Lokasi Strategis</h2>
+                <h3 class="font-serif text-3xl font-bold text-emerald-950 dark:text-slate-100">Destinasi Wisata Terdekat</h3>
+            </div>
+
+            <div class="grid grid-cols-1 lg:grid-cols-3 gap-8 items-center">
+                <div class="lg:col-span-1 bg-white dark:bg-navy-900 p-6 rounded-3xl shadow-sm border border-slate-200 dark:border-slate-800 space-y-4">
+                    <h4 class="font-bold text-emerald-950 dark:text-gold-400 text-lg border-b border-slate-200 dark:border-slate-800 pb-3">
+                        <i class="fa-solid fa-map-pin text-gold-500 mr-2"></i>Jarak Destinasi Populer
+                    </h4>
+                    <ul class="space-y-3 text-sm">
+                        <li class="flex justify-between items-center text-slate-700 dark:text-slate-300">
+                            <span><i class="fa-solid fa-tree text-emerald-600 mr-2"></i>Taman Safari Indonesia</span>
+                            <span class="font-bold text-xs bg-slate-100 dark:bg-slate-800 px-2.5 py-1 rounded-lg">10 Menit</span>
+                        </li>
+                        <li class="flex justify-between items-center text-slate-700 dark:text-slate-300">
+                            <span><i class="fa-solid fa-cloud-sun text-emerald-600 mr-2"></i>Kebun Teh Gunung Mas</span>
+                            <span class="font-bold text-xs bg-slate-100 dark:bg-slate-800 px-2.5 py-1 rounded-lg">15 Menit</span>
+                        </li>
+                        <li class="flex justify-between items-center text-slate-700 dark:text-slate-300">
+                            <span><i class="fa-solid fa-utensils text-emerald-600 mr-2"></i>Cimory Riverside & Dairyland</span>
+                            <span class="font-bold text-xs bg-slate-100 dark:bg-slate-800 px-2.5 py-1 rounded-lg">12 Menit</span>
+                        </li>
+                        <li class="flex justify-between items-center text-slate-700 dark:text-slate-300">
+                            <span><i class="fa-solid fa-shop text-emerald-600 mr-2"></i>Pusat Oleh-Oleh Puncak</span>
+                            <span class="font-bold text-xs bg-slate-100 dark:bg-slate-800 px-2.5 py-1 rounded-lg">5 Menit</span>
+                        </li>
+                    </ul>
+                </div>
+
+                <!-- Location Map Graphic Card -->
+                <div class="lg:col-span-2 bg-emerald-950 rounded-3xl overflow-hidden p-8 text-white relative min-h-[280px] flex flex-col justify-between" style="background-image: linear-gradient(rgba(11,25,44,0.85), rgba(5,34,20,0.85)), url('https://images.unsplash.com/photo-1512917774080-9991f1c4c750?auto=format&fit=crop&w=1200&q=80'); bg-cover">
+                    <div>
+                        <span class="bg-gold-500 text-emerald-950 font-bold text-xs px-3 py-1 rounded-full uppercase">Puncak, Bogor</span>
+                        <h4 class="font-serif text-2xl font-bold mt-3 text-gold-400">Jl. Raya Puncak Km. 82, Cisarua</h4>
+                        <p class="text-slate-300 text-sm mt-1">Akses jalan mudah dilalui kendaraan roda dua maupun bus pariwisata.</p>
+                    </div>
+                    <div class="pt-6">
+                        <a href="https://maps.google.com" target="_blank" class="inline-flex items-center gap-2 bg-white text-emerald-950 font-bold px-6 py-3 rounded-xl shadow-lg hover:bg-gold-400 transition-all">
+                            <i class="fa-solid fa-location-arrow text-emerald-800"></i> Buka Google Maps Navigation
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Interactive Reviews & Ratings Section -->
+    <section id="reviews" class="py-20 bg-white dark:bg-navy-900 transition-colors">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center max-w-3xl mx-auto mb-12">
+                <h2 class="text-gold-500 uppercase tracking-widest text-xs font-bold mb-2">Testimoni Pengunjung</h2>
+                <h3 class="font-serif text-3xl font-bold text-emerald-950 dark:text-slate-100">Ulasan & Rating Tamu</h3>
+            </div>
+
+            <!-- Review Filter & Stats Summary -->
+            <div class="grid grid-cols-1 md:grid-cols-12 gap-8 mb-12 items-center">
+                <div class="md:col-span-4 bg-slate-50 dark:bg-slate-800 p-6 rounded-3xl text-center border border-slate-200 dark:border-slate-700">
+                    <span class="text-5xl font-extrabold text-emerald-900 dark:text-gold-400">4.9</span>
+                    <div class="flex justify-center text-gold-400 text-sm my-2">
+                        <i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i>
+                    </div>
+                    <p class="text-xs text-slate-500 dark:text-slate-400">Berdasarkan 350+ Ulasan Terverifikasi</p>
+                </div>
+
+                <!-- Interactive Filter Buttons -->
+                <div class="md:col-span-8 flex flex-wrap gap-2 items-center" id="review-stars-filter">
+                    <span class="text-xs font-bold text-slate-500 uppercase mr-2">Filter Bintang:</span>
+                    <button class="review-star-btn active px-3.5 py-2 rounded-xl text-xs font-bold bg-emerald-800 text-white" data-star="all">Semua Ulasan</button>
+                    <button class="review-star-btn px-3.5 py-2 rounded-xl text-xs font-bold bg-slate-100 dark:bg-slate-800 text-slate-600 dark:text-slate-300" data-star="5"><i class="fa-solid fa-star text-gold-400"></i> 5 Bintang</button>
+                    <button class="review-star-btn px-3.5 py-2 rounded-xl text-xs font-bold bg-slate-100 dark:bg-slate-800 text-slate-600 dark:text-slate-300" data-star="4"><i class="fa-solid fa-star text-gold-400"></i> 4 Bintang</button>
+                </div>
+            </div>
+
+            <!-- Review List Cards Grid -->
+            <div id="reviews-list-container" class="grid grid-cols-1 md:grid-cols-3 gap-6 mb-12">
+                <!-- Javascript dynamic content -->
+            </div>
+
+            <!-- Submit New Review Accordion Form -->
+            <div class="max-w-2xl mx-auto bg-slate-50 dark:bg-slate-800/60 p-6 sm:p-8 rounded-3xl border border-slate-200 dark:border-slate-700">
+                <h4 class="font-bold text-emerald-950 dark:text-gold-400 text-base mb-4 flex items-center justify-between cursor-pointer" id="toggle-add-review-form">
+                    <span><i class="fa-solid fa-pen-to-square text-gold-500 mr-2"></i> Tulis Ulasan Anda tentang Villa Thursina</span>
+                    <i class="fa-solid fa-chevron-down text-sm"></i>
+                </h4>
+
+                <form id="add-review-form" class="space-y-4">
+                    <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                        <div>
+                            <label class="block text-xs font-semibold text-slate-600 dark:text-slate-400 mb-1">Nama Anda</label>
+                            <input type="text" id="rev-author" placeholder="Contoh: Maya Indah" class="w-full bg-white dark:bg-slate-800 border border-slate-300 dark:border-slate-700 rounded-xl px-3.5 py-2 text-xs text-slate-800 dark:text-white focus:outline-none" required>
+                        </div>
+                        <div>
+                            <label class="block text-xs font-semibold text-slate-600 dark:text-slate-400 mb-1">Rating Bintang</label>
+                            <select id="rev-rating" class="w-full bg-white dark:bg-slate-800 border border-slate-300 dark:border-slate-700 rounded-xl px-3.5 py-2 text-xs text-slate-800 dark:text-white focus:outline-none">
+                                <option value="5">⭐⭐⭐⭐⭐ (5 - Sangat Puas)</option>
+                                <option value="4">⭐⭐⭐⭐ (4 - Bagus)</option>
+                                <option value="3">⭐⭐⭐ (3 - Cukup)</option>
+                            </select>
+                        </div>
+                    </div>
+                    <div>
+                        <label class="block text-xs font-semibold text-slate-600 dark:text-slate-400 mb-1">Pengalaman / Pesan Kesan</label>
+                        <textarea id="rev-text" rows="3" placeholder="Ceritakan pengalaman menginap Anda..." class="w-full bg-white dark:bg-slate-800 border border-slate-300 dark:border-slate-700 rounded-xl px-3.5 py-2 text-xs text-slate-800 dark:text-white focus:outline-none" required></textarea>
+                    </div>
+                    <button type="submit" class="w-full bg-emerald-800 hover:bg-emerald-900 text-white font-bold text-xs py-3 rounded-xl transition-all">
+                        Kirim Ulasan Sekarang
+                    </button>
+                </form>
+            </div>
+        </div>
+    </section>
+
+    <!-- FAQ Accordion Section -->
+    <section id="faq" class="py-20 bg-slate-100/70 dark:bg-navy-900/50 transition-colors">
+        <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center mb-12">
+                <h2 class="text-gold-500 uppercase tracking-widest text-xs font-bold mb-2">Pertanyaan Umum</h2>
+                <h3 class="font-serif text-3xl font-bold text-emerald-950 dark:text-slate-100">Frequently Asked Questions (FAQ)</h3>
+            </div>
+
+            <div class="space-y-4">
+                <div class="bg-white dark:bg-navy-900 border border-slate-200 dark:border-slate-800 rounded-2xl p-5 hover:border-gold-500 transition-all">
+                    <h4 class="font-bold text-emerald-950 dark:text-slate-100 flex justify-between items-center cursor-pointer faq-toggle">
+                        <span>Jam berapa jadwal Check-In & Check-Out di Villa Thursina?</span>
+                        <i class="fa-solid fa-chevron-down text-gold-500 transition-transform"></i>
+                    </h4>
+                    <p class="text-slate-600 dark:text-slate-400 text-xs sm:text-sm mt-3 hidden leading-relaxed">
+                        Waktu Check-In standar adalah pukul 14:00 WIB dan waktu Check-Out maksimal pukul 12:00 WIB keesokan harinya. Layanan early check-in tersedia berdasarkan ketersediaan unit.
+                    </p>
+                </div>
+
+                <div class="bg-white dark:bg-navy-900 border border-slate-200 dark:border-slate-800 rounded-2xl p-5 hover:border-gold-500 transition-all">
+                    <h4 class="font-bold text-emerald-950 dark:text-slate-100 flex justify-between items-center cursor-pointer faq-toggle">
+                        <span>Bagaimana sistem DP dan ketentuan pembatalan?</span>
+                        <i class="fa-solid fa-chevron-down text-gold-500 transition-transform"></i>
+                    </h4>
+                    <p class="text-slate-600 dark:text-slate-400 text-xs sm:text-sm mt-3 hidden leading-relaxed">
+                        Pemesanan dianggap mengikat setelah pembayaran DP sebesar minimal 50%. Pembatalan H-7 dapat melakukan reschedule tanggal jadwal menginap tanpa biaya tambahan.
+                    </p>
+                </div>
+
+                <div class="bg-white dark:bg-navy-900 border border-slate-200 dark:border-slate-800 rounded-2xl p-5 hover:border-gold-500 transition-all">
+                    <h4 class="font-bold text-emerald-950 dark:text-slate-100 flex justify-between items-center cursor-pointer faq-toggle">
+                        <span>Apakah fasilitas kolam renang bersifat pribadi (Private)?</span>
+                        <i class="fa-solid fa-chevron-down text-gold-500 transition-transform"></i>
+                    </h4>
+                    <p class="text-slate-600 dark:text-slate-400 text-xs sm:text-sm mt-3 hidden leading-relaxed">
+                        Ya, setiap unit villa di Villa Thursina memiliki kolam renang pribadi tersendiri (bukan kolam bersama) sehingga privasi keluarga Anda 100% terjaga.
+                    </p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="bg-emerald-950 dark:bg-slate-950 text-slate-300 pt-16 pb-12 border-t border-emerald-900 dark:border-slate-800">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="grid grid-cols-1 md:grid-cols-4 gap-10 mb-12">
+                <div class="space-y-4">
+                    <div class="flex items-center gap-3">
+                        <div class="w-10 h-10 rounded-full bg-gold-500 flex items-center justify-center text-emerald-950 font-serif font-bold text-xl">
+                            VT
+                        </div>
+                        <span class="font-serif text-2xl font-bold text-gold-400">Thursina</span>
+                    </div>
+                    <p class="text-xs text-slate-400 leading-relaxed">
+                        Destinasi hunian peristirahatan eksklusif di Puncak. Nikmati pengalaman liburan mewah dengan pemandangan pegunungan dan layanan prima.
+                    </p>
+                </div>
+
+                <div>
+                    <h5 class="font-bold text-white text-sm mb-4">Navigasi Halaman</h5>
+                    <ul class="space-y-2 text-xs">
+                        <li><a href="#hero" class="hover:text-gold-400 transition-colors">Beranda</a></li>
+                        <li><a href="#villas" class="hover:text-gold-400 transition-colors">Katalog Unit Villa</a></li>
+                        <li><a href="#booking" class="hover:text-gold-400 transition-colors">Kalkulator Booking</a></li>
+                        <li><a href="#facilities" class="hover:text-gold-400 transition-colors">Fasilitas Resort</a></li>
+                    </ul>
+                </div>
+
+                <div>
+                    <h5 class="font-bold text-white text-sm mb-4">Layanan & Kontak</h5>
+                    <ul class="space-y-3 text-xs">
+                        <li class="flex items-start gap-2.5">
+                            <i class="fa-solid fa-location-dot text-gold-400 mt-0.5"></i>
+                            <span>Jl. Raya Puncak Km. 82, Cisarua, Bogor, Jawa Barat</span>
+                        </li>
+                        <li class="flex items-center gap-2.5">
+                            <i class="fa-solid fa-phone text-gold-400"></i>
+                            <span>+62 812-3456-7890</span>
+                        </li>
+                        <li class="flex items-center gap-2.5">
+                            <i class="fa-solid fa-envelope text-gold-400"></i>
+                            <span>reservation@villathursina.com</span>
+                        </li>
+                    </ul>
+                </div>
+
+                <div>
+                    <h5 class="font-bold text-white text-sm mb-4">Sosial Media</h5>
+                    <div class="flex space-x-3 mb-4">
+                        <a href="#" class="w-9 h-9 rounded-full bg-emerald-900 hover:bg-gold-500 hover:text-emerald-950 flex items-center justify-center text-sm transition-all"><i class="fa-brands fa-instagram"></i></a>
+                        <a href="#" class="w-9 h-9 rounded-full bg-emerald-900 hover:bg-gold-500 hover:text-emerald-950 flex items-center justify-center text-sm transition-all"><i class="fa-brands fa-facebook-f"></i></a>
+                        <a href="#" class="w-9 h-9 rounded-full bg-emerald-900 hover:bg-gold-500 hover:text-emerald-950 flex items-center justify-center text-sm transition-all"><i class="fa-brands fa-tiktok"></i></a>
+                    </div>
+                    <span class="text-[11px] text-slate-400 block">Jam Operasional CS: 08.00 - 22.00 WIB</span>
+                </div>
+            </div>
+
+            <div class="border-t border-emerald-900/60 dark:border-slate-800 pt-8 text-center text-xs text-slate-500">
+                <p>&copy; 2026 Villa Thursina Luxury Resort. All Rights Reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Floating WhatsApp Button -->
+    <a href="https://wa.me/6281234567890?text=Halo%20Admin%20Villa%20Thursina,%20saya%20ingin%20tanya%20informasi%20ketersediaan..." target="_blank" class="fixed bottom-6 right-6 z-40 bg-emerald-600 text-white w-14 h-14 rounded-full flex items-center justify-center text-2xl shadow-2xl hover:bg-emerald-500 hover:scale-110 transition-all border-2 border-white/40">
+        <i class="fa-brands fa-whatsapp"></i>
+    </a>
+
+    <!-- VILLA DETAIL MODAL (360 / Virtual Tour & Full Specs) -->
+    <div id="detail-modal" class="fixed inset-0 z-50 bg-slate-900/80 backdrop-blur-sm hidden flex items-center justify-center p-4">
+        <div class="bg-white dark:bg-navy-900 text-slate-800 dark:text-slate-100 rounded-3xl max-w-3xl w-full max-h-[90vh] overflow-y-auto shadow-2xl border border-slate-200 dark:border-slate-800">
+            <div class="relative">
+                <img id="detail-modal-img" src="" class="w-full h-64 sm:h-80 object-cover">
+                <button id="close-detail-modal-btn" class="absolute top-4 right-4 bg-slate-900/70 hover:bg-slate-900 text-white w-10 h-10 rounded-full flex items-center justify-center text-xl transition-all">&times;</button>
+                <span id="detail-modal-badge" class="absolute bottom-4 left-4 bg-gold-500 text-emerald-950 font-bold text-xs px-3 py-1 rounded-full">--</span>
+            </div>
+
+            <div class="p-6 sm:p-8 space-y-6">
+                <div>
+                    <h3 id="detail-modal-title" class="font-serif text-3xl font-bold text-emerald-950 dark:text-gold-400">--</h3>
+                    <p id="detail-modal-price" class="text-xl font-bold text-emerald-800 dark:text-slate-200 mt-1">--</p>
+                </div>
+
+                <div id="detail-modal-specs" class="grid grid-cols-3 gap-4 text-center py-4 bg-slate-50 dark:bg-slate-800/60 rounded-2xl border border-slate-200 dark:border-slate-700">
+                    <!-- Specs inserted via JS -->
+                </div>
+
+                <div>
+                    <h4 class="font-bold text-sm uppercase text-slate-500 mb-2">Fasilitas Lengkap Unit</h4>
+                    <ul id="detail-modal-features" class="grid grid-cols-1 sm:grid-cols-2 gap-2 text-xs text-slate-700 dark:text-slate-300">
+                        <!-- Features inserted via JS -->
+                    </ul>
+                </div>
+
+                <div>
+                    <h4 class="font-bold text-sm uppercase text-slate-500 mb-2">Aturan Menginap</h4>
+                    <p class="text-xs text-slate-600 dark:text-slate-400 leading-relaxed">
+                        • Dilarang membawa senjata tajam / obat terlarang.<br>
+                        • Harap menjaga ketenangan di atas pukul 22:00 WIB.<br>
+                        • Kapasitas tamu maksimal wajib dipatuhi.
+                    </p>
+                </div>
+
+                <div class="pt-2">
+                    <button id="detail-modal-book-btn" class="w-full bg-gradient-to-r from-gold-500 to-amber-500 text-emerald-950 font-bold py-3.5 rounded-xl shadow-lg hover:from-amber-500 transition-all">
+                        Pesan Unit Ini Sekarang
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- BOOKING SUMMARY & PAYMENT MODAL -->
+    <div id="booking-modal" class="fixed inset-0 z-50 bg-slate-900/80 backdrop-blur-sm hidden flex items-center justify-center p-4">
+        <div class="bg-white dark:bg-navy-900 text-slate-800 dark:text-slate-100 rounded-3xl max-w-2xl w-full max-h-[90vh] overflow-y-auto shadow-2xl border border-slate-200 dark:border-slate-800">
+            <div class="p-6 bg-emerald-950 text-white rounded-t-3xl flex justify-between items-center">
+                <div>
+                    <h3 class="font-serif text-xl font-bold text-gold-400"><i class="fa-solid fa-receipt mr-2"></i>Konfirmasi Reservasi & Invoice</h3>
+                    <p class="text-xs text-emerald-200">Periksa detail pesanan Anda sebelum memproses</p>
+                </div>
+                <button id="close-modal-btn" class="text-white hover:text-gold-400 text-2xl font-bold focus:outline-none">&times;</button>
+            </div>
+
+            <div class="p-6 space-y-6">
+                <!-- Customer Details -->
+                <div class="bg-slate-50 dark:bg-slate-800/60 p-4 rounded-2xl border border-slate-200 dark:border-slate-700 text-xs space-y-1">
+                    <h4 class="font-bold uppercase text-slate-500 mb-2">Data Pemesan</h4>
+                    <p><span class="text-slate-500">Nama:</span> <strong id="modal-cust-name" class="text-slate-800 dark:text-white">--</strong></p>
+                    <p><span class="text-slate-500">Email:</span> <strong id="modal-cust-email" class="text-slate-800 dark:text-white">--</strong></p>
+                    <p><span class="text-slate-500">WhatsApp:</span> <strong id="modal-cust-phone" class="text-slate-800 dark:text-white">--</strong></p>
+                    <p><span class="text-slate-500">Catatan:</span> <strong id="modal-cust-notes" class="text-slate-800 dark:text-white">--</strong></p>
+                </div>
+
+                <!-- Stay Details Summary -->
+                <div class="space-y-2 text-xs">
+                    <div class="flex justify-between pb-2 border-b border-slate-100 dark:border-slate-800">
+                        <span class="text-slate-500">Tipe Villa:</span>
+                        <span id="modal-villa-name" class="font-bold text-emerald-900 dark:text-gold-400">--</span>
+                    </div>
+                    <div class="flex justify-between pb-2 border-b border-slate-100 dark:border-slate-800">
+                        <span class="text-slate-500">Check-in / Check-out:</span>
+                        <span id="modal-dates" class="font-semibold text-slate-800 dark:text-slate-200">--</span>
+                    </div>
+                    <div class="flex justify-between pb-2 border-b border-slate-100 dark:border-slate-800">
+                        <span class="text-slate-500">Durasi & Tamu:</span>
+                        <span id="modal-stay-info" class="font-semibold text-slate-800 dark:text-slate-200">--</span>
+                    </div>
+                    <div class="flex justify-between pb-2 border-b border-slate-100 dark:border-slate-800">
+                        <span class="text-slate-500">Add-ons Opsional:</span>
+                        <span id="modal-addons" class="font-semibold text-slate-800 dark:text-slate-200">--</span>
+                    </div>
+                </div>
+
+                <!-- Payment Method Selector -->
+                <div>
+                    <label class="block text-xs font-bold uppercase text-slate-500 mb-3">Metode Pembayaran (DP / Pelunasan)</label>
+                    <div class="grid grid-cols-2 sm:grid-cols-4 gap-2">
+                        <label class="border border-slate-200 dark:border-slate-700 p-3 rounded-xl cursor-pointer hover:border-gold-500 flex flex-col items-center justify-center text-center payment-option">
+                            <input type="radio" name="payment-method" value="Transfer Bank BCA" class="sr-only" checked>
+                            <i class="fa-solid fa-building-columns text-emerald-800 dark:text-gold-400 text-lg mb-1"></i>
+                            <span class="text-[11px] font-semibold">Bank BCA</span>
+                        </label>
+                        <label class="border border-slate-200 dark:border-slate-700 p-3 rounded-xl cursor-pointer hover:border-gold-500 flex flex-col items-center justify-center text-center payment-option">
+                            <input type="radio" name="payment-method" value="QRIS Instant All Payment" class="sr-only">
+                            <i class="fa-solid fa-qrcode text-emerald-800 dark:text-gold-400 text-lg mb-1"></i>
+                            <span class="text-[11px] font-semibold">QRIS</span>
+                        </label>
+                        <label class="border border-slate-200 dark:border-slate-700 p-3 rounded-xl cursor-pointer hover:border-gold-500 flex flex-col items-center justify-center text-center payment-option">
+                            <input type="radio" name="payment-method" value="E-Wallet (Gopay/OVO/ShopeePay)" class="sr-only">
+                            <i class="fa-solid fa-wallet text-emerald-800 dark:text-gold-400 text-lg mb-1"></i>
+                            <span class="text-[11px] font-semibold">E-Wallet</span>
+                        </label>
+                        <label class="border border-slate-200 dark:border-slate-700 p-3 rounded-xl cursor-pointer hover:border-gold-500 flex flex-col items-center justify-center text-center payment-option">
+                            <input type="radio" name="payment-method" value="Kartu Kredit / Debit" class="sr-only">
+                            <i class="fa-solid fa-credit-card text-emerald-800 dark:text-gold-400 text-lg mb-1"></i>
+                            <span class="text-[11px] font-semibold">Credit Card</span>
+                        </label>
+                    </div>
+                </div>
+
+                <!-- Final Price Display -->
+                <div class="bg-amber-50 dark:bg-slate-800 border border-amber-200 dark:border-slate-700 p-4 rounded-2xl flex justify-between items-center">
+                    <div>
+                        <span class="text-xs uppercase text-amber-800 dark:text-gold-400 font-bold block">Total Tagihan Pemesanan</span>
+                        <span class="text-[10px] text-amber-700 dark:text-slate-400">Termasuk Pajak & Biaya Tambahan</span>
+                    </div>
+                    <span id="modal-total-price" class="text-2xl font-black text-emerald-950 dark:text-gold-400">Rp 0</span>
+                </div>
+
+                <!-- Confirm via WhatsApp Button -->
+                <button id="confirm-wa-btn" class="w-full bg-emerald-600 hover:bg-emerald-700 text-white font-bold py-3.5 rounded-xl shadow-lg transition-all flex items-center justify-center gap-2 text-sm">
+                    <i class="fa-brands fa-whatsapp text-lg"></i> Kirim Pesanan via WhatsApp Admin
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <!-- LIGHTBOX MODAL -->
+    <div id="lightbox-modal" class="fixed inset-0 z-50 bg-black/90 hidden flex items-center justify-center p-4">
+        <button id="close-lightbox" class="absolute top-6 right-6 text-white text-3xl font-bold">&times;</button>
+        <button id="prev-lightbox" class="absolute left-6 text-white text-3xl p-2"><i class="fa-solid fa-chevron-left"></i></button>
+        <img id="lightbox-img" src="" class="max-h-[85vh] max-w-[90vw] object-contain rounded-2xl">
+        <button id="next-lightbox" class="absolute right-6 text-white text-3xl p-2"><i class="fa-solid fa-chevron-right"></i></button>
+    </div>
+
+    <!-- JAVASCRIPT LOGIC -->
+    <script>
+        // Data Structure for Villas
+        const villasData = [
+            {
+                id: 'villa-royal-suite',
+                cat: 'suite',
+                name: 'Villa Royal Suite',
+                capacity: 15,
+                bedrooms: 4,
+                bathrooms: 3,
+                price: 3800000,
+                badge: 'Best Seller',
+                image: 'https://images.unsplash.com/photo-1613977257363-707ba9348227?auto=format&fit=crop&w=800&q=80',
+                features: ['Private Heated Pool', 'Billiard Table', 'Karaoke System', 'BBQ Grill Outdoor', 'Free Breakfast 10 Porsi']
+            },
+            {
+                id: 'villa-family-deluxe',
+                cat: 'deluxe',
+                name: 'Villa Family Deluxe',
+                capacity: 8,
+                bedrooms: 3,
+                bathrooms: 2,
+                price: 2400000,
+                badge: 'Favorit Keluarga',
+                image: 'https://images.unsplash.com/photo-1580587771525-78b9dba3b914?auto=format&fit=crop&w=800&q=80',
+                features: ['Private Pool', 'Dapur Modern Lengkap', 'Smart TV 55" Netflix', 'Balkon View Gunung']
+            },
+            {
+                id: 'villa-executive-cabin',
+                cat: 'cabin',
+                name: 'Villa Executive Cabin',
+                capacity: 4,
+                bedrooms: 2,
+                bathrooms: 1,
+                price: 1500000,
+                badge: 'Cozy & Romantis',
+                image: 'https://images.unsplash.com/photo-1518780664697-55e3ad937233?auto=format&fit=crop&w=800&q=80',
+                features: ['Fire Pit Api Unggun', 'Mini Kitchenette', 'Balkon Lembah', 'High-speed WiFi']
+            },
+            {
+                id: 'villa-luxury-mansion',
+                cat: 'luxury',
+                name: 'Luxury Grand Mansion',
+                capacity: 25,
+                bedrooms: 6,
+                bathrooms: 5,
+                price: 6500000,
+                badge: 'Mewah & Eksklusif',
+                image: 'https://images.unsplash.com/photo-1512917774080-9991f1c4c750?auto=format&fit=crop&w=800&q=80',
+                features: ['Large Private Pool', 'Private Butler 24 Jam', 'Jacuzzi Warm Water', 'Home Theater Room', 'Ruang Gathering Luas']
+            }
+        ];
+
+        // Addons Data
+        const addonsData = [
+            { id: 'bbq-set', name: 'Paket BBQ Spesial (Daging & Sosis)', price: 350000 },
+            { id: 'breakfast-pkg', name: 'Paket Sarapan Tradisional (per pax)', price: 45000 },
+            { id: 'extra-bed', name: 'Extra Bed Mattress Set', price: 150000 },
+            { id: 'floating-bf', name: 'Floating Breakfast Tray', price: 200000 },
+            { id: 'romantic-decor', name: 'Dekorasi Romantis / Honeymoon', price: 400000 }
+        ];
+
+        // Reviews Initial Data
+        let reviewsData = [
+            { id: 1, author: 'Dian Rahmawati', rating: 5, text: 'Villa sangat bersih dan sejuk. Fasilitas karaoke dan kolam renang hangatnya bikin sekeluarga betah!', villa: 'Villa Royal Suite' },
+            { id: 2, author: 'Aditya Pratama', rating: 5, text: 'Pelayanan admin via WhatsApp sangat cepat. Lokasi mudah ditemukan dekat Taman Safari.', villa: 'Villa Family Deluxe' },
+            { id: 3, author: 'Rian Kurnia', rating: 4, text: 'Pemandangan pagi hari luar biasa indah. Dapur lengkap jadi gampang kalau mau masak-masak.', villa: 'Villa Executive Cabin' }
+        ];
+
+        // Active State Variables
+        let currentDiscount = 0; // Discount amount in IDR or %
+        let isPercentageDiscount = false;
+        let appliedCouponCode = '';
+
+        // DOM Element References
+        const villasContainer = document.getElementById('villas-container');
+        const bookingVillaSelect = document.getElementById('booking-villa');
+        const addonsContainer = document.getElementById('addons-container');
+        const checkinInput = document.getElementById('booking-checkin');
+        const checkoutInput = document.getElementById('booking-checkout');
+
+        // Set default dates (Today & Tomorrow)
+        const today = new Date();
+        const tomorrow = new Date(today);
+        tomorrow.setDate(tomorrow.getDate() + 1);
+
+        checkinInput.value = today.toISOString().split('T')[0];
+        checkinInput.min = today.toISOString().split('T')[0];
+        checkoutInput.value = tomorrow.toISOString().split('T')[0];
+        checkoutInput.min = tomorrow.toISOString().split('T')[0];
+
+        document.getElementById('search-checkin').value = today.toISOString().split('T')[0];
+        document.getElementById('search-checkout').value = tomorrow.toISOString().split('T')[0];
+
+        // Render Villa Catalog Cards
+        function renderVillas(items, layout = 'grid') {
+            villasContainer.innerHTML = '';
+            
+            if (layout === 'list') {
+                villasContainer.className = 'space-y-6';
+            } else {
+                villasContainer.className = 'grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8';
+            }
+
+            if (items.length === 0) {
+                villasContainer.innerHTML = `<div class="col-span-3 text-center py-12 text-slate-400">Tidak ada unit villa yang sesuai dengan kriteria pencarian Anda.</div>`;
+                return;
+            }
+
+            items.forEach(villa => {
+                const card = document.createElement('div');
+                
+                if (layout === 'list') {
+                    card.className = 'bg-white dark:bg-navy-900 rounded-3xl overflow-hidden shadow-md border border-slate-200 dark:border-slate-800 flex flex-col md:flex-row items-stretch';
+                    card.innerHTML = `
+                        <div class="md:w-2/5 relative">
+                            <img src="${villa.image}" class="w-full h-full min-h-[220px] object-cover">
+                            <span class="absolute top-4 left-4 bg-gold-500 text-emerald-950 text-xs font-bold px-3 py-1 rounded-full shadow">${villa.badge}</span>
+                        </div>
+                        <div class="md:w-3/5 p-6 flex flex-col justify-between">
+                            <div>
+                                <h3 class="font-serif text-2xl font-bold text-emerald-950 dark:text-slate-100">${villa.name}</h3>
+                                <div class="flex items-center gap-4 text-xs text-slate-500 dark:text-slate-400 my-3">
+                                    <span><i class="fa-solid fa-users text-gold-500 mr-1"></i> Maks ${villa.capacity} Tamu</span>
+                                    <span><i class="fa-solid fa-bed text-gold-500 mr-1"></i> ${villa.bedrooms} Kamar</span>
+                                    <span><i class="fa-solid fa-bath text-gold-500 mr-1"></i> ${villa.bathrooms} Toilet</span>
+                                </div>
+                                <div class="flex flex-wrap gap-1.5 mb-4">
+                                    ${villa.features.map(f => `<span class="bg-slate-100 dark:bg-slate-800 text-slate-600 dark:text-slate-300 text-[11px] px-2.5 py-1 rounded-md"><i class="fa-solid fa-check text-emerald-600 mr-1"></i>${f}</span>`).join('')}
+                                </div>
+                            </div>
+                            <div class="flex items-center justify-between border-t border-slate-100 dark:border-slate-800 pt-4 mt-2">
+                                <div>
+                                    <span class="text-xs text-slate-400 block">Harga / malam</span>
+                                    <span class="text-xl font-bold text-emerald-900 dark:text-gold-400">Rp ${villa.price.toLocaleString('id-ID')}</span>
+                                </div>
+                                <div class="flex gap-2">
+                                    <button onclick="openDetailModal('${villa.id}')" class="bg-slate-100 dark:bg-slate-800 text-slate-700 dark:text-slate-200 text-xs font-bold px-4 py-2.5 rounded-xl">Detail</button>
+                                    <button onclick="selectVillaForBooking('${villa.id}')" class="bg-emerald-800 hover:bg-emerald-900 text-white text-xs font-bold px-4 py-2.5 rounded-xl">Book</button>
+                                </div>
+                            </div>
+                        </div>
+                    `;
+                } else {
+                    card.className = 'bg-white dark:bg-navy-900 rounded-3xl overflow-hidden shadow-md hover:shadow-2xl transition-all duration-300 border border-slate-200 dark:border-slate-800 flex flex-col justify-between';
+                    card.innerHTML = `
+                        <div>
+                            <div class="relative">
+                                <img src="${villa.image}" class="w-full h-56 object-cover">
+                                <span class="absolute top-4 right-4 bg-gold-500 text-emerald-950 text-xs font-bold px-3 py-1 rounded-full shadow">${villa.badge}</span>
+                            </div>
+                            <div class="p-6">
+                                <h3 class="font-serif text-2xl font-bold text-emerald-950 dark:text-slate-100 mb-2">${villa.name}</h3>
+                                <div class="flex items-center gap-4 text-xs text-slate-500 dark:text-slate-400 mb-4 border-b border-slate-100 dark:border-slate-800 pb-3">
+                                    <span><i class="fa-solid fa-users text-gold-500 mr-1"></i> Maks ${villa.capacity} Tamu</span>
+                                    <span><i class="fa-solid fa-bed text-gold-500 mr-1"></i> ${villa.bedrooms} Kamar</span>
+                                    <span><i class="fa-solid fa-bath text-gold-500 mr-1"></i> ${villa.bathrooms} Bath</span>
+                                </div>
+                                <ul class="space-y-1.5 text-xs text-slate-600 dark:text-slate-300 mb-6">
+                                    ${villa.features.slice(0, 3).map(f => `<li><i class="fa-solid fa-circle-check text-emerald-600 dark:text-gold-400 mr-2"></i>${f}</li>`).join('')}
+                                </ul>
+                            </div>
+                        </div>
+                        <div class="p-6 bg-slate-50 dark:bg-slate-800/50 border-t border-slate-100 dark:border-slate-800 flex items-center justify-between">
+                            <div>
+                                <span class="text-xs text-slate-400 block">Harga / malam</span>
+                                <span class="text-xl font-bold text-emerald-900 dark:text-gold-400">Rp ${villa.price.toLocaleString('id-ID')}</span>
+                            </div>
+                            <div class="flex gap-2">
+                                <button onclick="openDetailModal('${villa.id}')" class="bg-slate-200 dark:bg-slate-700 text-slate-800 dark:text-white font-bold text-xs px-3 py-2 rounded-xl">Detail</button>
+                                <button onclick="selectVillaForBooking('${villa.id}')" class="bg-emerald-800 hover:bg-emerald-900 text-white font-bold text-xs px-4 py-2 rounded-xl">Book</button>
+                            </div>
+                        </div>
+                    `;
+                }
+
+                villasContainer.appendChild(card);
+            });
+        }
+
+        // Populate Dropdowns & Addons
+        function populateOptions() {
+            bookingVillaSelect.innerHTML = villasData.map(v => 
+                `<option value="${v.id}">${v.name} - Rp ${v.price.toLocaleString('id-ID')} /malam (Maks ${v.capacity} orang)</option>`
+            ).join('');
+
+            addonsContainer.innerHTML = addonsData.map(a => `
+                <label class="flex items-center justify-between bg-slate-50 dark:bg-slate-800 border border-slate-200 dark:border-slate-700 p-3 rounded-xl cursor-pointer hover:border-gold-500 transition-all">
+                    <div class="flex items-center gap-2">
+                        <input type="checkbox" value="${a.id}" class="w-4 h-4 text-emerald-600 rounded addon-checkbox" onchange="calculateTotal()">
+                        <span class="text-xs font-semibold text-slate-700 dark:text-slate-200">${a.name}</span>
+                    </div>
+                    <span class="text-xs text-emerald-800 dark:text-gold-400 font-bold">+Rp ${a.price.toLocaleString('id-ID')}</span>
+                </label>
+            `).join('');
+        }
+
+        // Calculate Total Price Live
+        function calculateTotal() {
+            const selectedVillaId = bookingVillaSelect.value;
+            const selectedVilla = villasData.find(v => v.id === selectedVillaId) || villasData[0];
+
+            const cin = new Date(checkinInput.value);
+            const cout = new Date(checkoutInput.value);
+
+            let diffNights = Math.ceil((cout - cin) / (1000 * 60 * 60 * 24));
+            if (isNaN(diffNights) || diffNights < 1) diffNights = 1;
+
+            const adults = parseInt(document.getElementById('booking-adults').value) || 1;
+            const children = parseInt(document.getElementById('booking-children').value) || 0;
+            const totalGuests = adults + children;
+
+            const subtotalVilla = selectedVilla.price * diffNights;
+
+            // Addons calculation
+            let subtotalAddons = 0;
+            let selectedAddonsList = [];
+            document.querySelectorAll('.addon-checkbox:checked').forEach(cb => {
+                const addObj = addonsData.find(a => a.id === cb.value);
+                if (addObj) {
+                    subtotalAddons += addObj.price;
+                    selectedAddonsList.push(addObj.name);
+                }
+            });
+
+            // Discount calculation
+            let discountAmount = 0;
+            if (isPercentageDiscount) {
+                discountAmount = (subtotalVilla + subtotalAddons) * (currentDiscount / 100);
+            } else {
+                discountAmount = currentDiscount;
+            }
+
+            const grandTotal = Math.max(0, (subtotalVilla + subtotalAddons) - discountAmount);
+
+            // Update UI Sidebar
+            document.getElementById('calc-villa-name').innerText = selectedVilla.name;
+            document.getElementById('calc-villa-price').innerText = `Rp ${selectedVilla.price.toLocaleString('id-ID')}`;
+            document.getElementById('calc-nights').innerText = `${diffNights} Malam`;
+            document.getElementById('calc-guests').innerText = `${totalGuests} Orang (${adults} D, ${children} A)`;
+            
+            document.getElementById('calc-subtotal').innerText = `Rp ${subtotalVilla.toLocaleString('id-ID')}`;
+            document.getElementById('calc-addons-subtotal').innerText = `Rp ${subtotalAddons.toLocaleString('id-ID')}`;
+
+            const discountRow = document.getElementById('calc-discount-row');
+            if (discountAmount > 0) {
+                discountRow.classList.remove('hidden');
+                document.getElementById('calc-discount-val').innerText = `-Rp ${discountAmount.toLocaleString('id-ID')}`;
+            } else {
+                discountRow.classList.add('hidden');
+            }
+
+            document.getElementById('calc-total').innerText = `Rp ${grandTotal.toLocaleString('id-ID')}`;
+
+            const addonsListContainer = document.getElementById('calc-addons-list');
+            if (selectedAddonsList.length > 0) {
+                addonsListContainer.innerHTML = selectedAddonsList.map(item => `<div>• ${item}</div>`).join('');
+            } else {
+                addonsListContainer.innerHTML = 'Belum ada opsi dipilih';
+            }
+
+            return {
+                selectedVilla,
+                diffNights,
+                totalGuests,
+                adults,
+                children,
+                selectedAddonsList,
+                grandTotal
+            };
+        }
+
+        // Coupon Code Logic
+        document.getElementById('apply-coupon-btn').addEventListener('click', () => {
+            const code = document.getElementById('coupon-input').value.trim().toUpperCase();
+            const msg = document.getElementById('coupon-message');
+
+            if (code === 'THURSINA10') {
+                currentDiscount = 10;
+                isPercentageDiscount = true;
+                appliedCouponCode = code;
+                msg.innerText = '✓ Kode promo berhasil! Diskon 10% diterapkan.';
+                msg.className = 'text-xs mt-2 font-medium text-emerald-600 dark:text-emerald-400 block';
+            } else if (code === 'PROMO2026') {
+                currentDiscount = 200000;
+                isPercentageDiscount = false;
+                appliedCouponCode = code;
+                msg.innerText = '✓ Kode promo berhasil! Potongan Rp 200.000 diterapkan.';
+                msg.className = 'text-xs mt-2 font-medium text-emerald-600 dark:text-emerald-400 block';
+            } else {
+                currentDiscount = 0;
+                appliedCouponCode = '';
+                msg.innerText = '✕ Kode promo tidak valid atau telah kedaluwarsa.';
+                msg.className = 'text-xs mt-2 font-medium text-red-500 block';
+            }
+
+            calculateTotal();
+        });
+
+        // Detail Modal Function
+        function openDetailModal(villaId) {
+            const villa = villasData.find(v => v.id === villaId);
+            if (!villa) return;
+
+            document.getElementById('detail-modal-img').src = villa.image;
+            document.getElementById('detail-modal-title').innerText = villa.name;
+            document.getElementById('detail-modal-badge').innerText = villa.badge;
+            document.getElementById('detail-modal-price').innerText = `Rp ${villa.price.toLocaleString('id-ID')} / Malam`;
+
+            document.getElementById('detail-modal-specs').innerHTML = `
+                <div><span class="text-xs text-slate-400 block">Kapasitas</span><strong class="text-sm">${villa.capacity} Orang</strong></div>
+                <div><span class="text-xs text-slate-400 block">Kamar Tidur</span><strong class="text-sm">${villa.bedrooms} Kamar</strong></div>
+                <div><span class="text-xs text-slate-400 block">Kamar Mandi</span><strong class="text-sm">${villa.bathrooms} Toilet</strong></div>
+            `;
+
+            document.getElementById('detail-modal-features').innerHTML = villa.features.map(f => 
+                `<li><i class="fa-solid fa-check text-emerald-600 dark:text-gold-400 mr-2"></i>${f}</li>`
+            ).join('');
+
+            const bookBtn = document.getElementById('detail-modal-book-btn');
+            bookBtn.onclick = () => {
+                document.getElementById('detail-modal').classList.add('hidden');
+                selectVillaForBooking(villa.id);
+            };
+
+            document.getElementById('detail-modal').classList.remove('hidden');
+        }
+
+        document.getElementById('close-detail-modal-btn').addEventListener('click', () => {
+            document.getElementById('detail-modal').classList.add('hidden');
+        });
+
+        function selectVillaForBooking(villaId) {
+            bookingVillaSelect.value = villaId;
+            calculateTotal();
+            smoothScrollTo('#booking');
+        }
+
+        // Custom Smooth Auto-Scroll Function with Navbar Offset Calculation
+        function smoothScrollTo(targetSelector) {
+            const targetElement = document.querySelector(targetSelector);
+            if (!targetElement) return;
+
+            const navbarHeight = document.getElementById('navbar').offsetHeight || 80;
+            const elementPosition = targetElement.getBoundingClientRect().top + window.pageYOffset;
+            const offsetPosition = elementPosition - navbarHeight + 10; // Extra breathing room
+
+            window.scrollTo({
+                top: offsetPosition,
+                behavior: 'smooth'
+            });
+
+            // Close mobile menu if open
+            const mobileMenu = document.getElementById('mobile-menu');
+            if (mobileMenu && !mobileMenu.classList.contains('hidden')) {
+                mobileMenu.classList.add('hidden');
+            }
+        }
+
+        function scrollToSection(id) {
+            smoothScrollTo('#' + id);
+        }
+
+        // Hero Carousel Logic
+        let currentSlide = 0;
+        const heroSlides = document.querySelectorAll('#hero-carousel .carousel-slide');
+        const heroIndicators = document.querySelectorAll('#hero-indicators button');
+
+        function setHeroSlide(index) {
+            heroSlides[currentSlide].classList.remove('opacity-100');
+            heroSlides[currentSlide].classList.add('opacity-0');
+            heroIndicators[currentSlide].className = 'w-3 h-2 rounded-full bg-white/50 hover:bg-white transition-all';
+
+            currentSlide = index;
+
+            heroSlides[currentSlide].classList.remove('opacity-0');
+            heroSlides[currentSlide].classList.add('opacity-100');
+            heroIndicators[currentSlide].className = 'w-10 h-2 rounded-full bg-gold-400 transition-all';
+        }
+
+        setInterval(() => {
+            let next = (currentSlide + 1) % heroSlides.length;
+            setHeroSlide(next);
+        }, 5000);
+
+        // Lightbox Logic
+        const lightboxImages = [
+            'https://images.unsplash.com/photo-1613977257363-707ba9348227?auto=format&fit=crop&w=1200&q=80',
+            'https://images.unsplash.com/photo-1580587771525-78b9dba3b914?auto=format&fit=crop&w=1200&q=80',
+            'https://images.unsplash.com/photo-1512917774080-9991f1c4c750?auto=format&fit=crop&w=1200&q=80',
+            'https://images.unsplash.com/photo-1600585154340-be6161a56a0c?auto=format&fit=crop&w=1200&q=80'
+        ];
+        let currentLightboxIndex = 0;
+
+        function openLightbox(index) {
+            currentLightboxIndex = index;
+            document.getElementById('lightbox-img').src = lightboxImages[currentLightboxIndex];
+            document.getElementById('lightbox-modal').classList.remove('hidden');
+        }
+
+        document.getElementById('close-lightbox').addEventListener('click', () => {
+            document.getElementById('lightbox-modal').classList.add('hidden');
+        });
+
+        document.getElementById('prev-lightbox').addEventListener('click', () => {
+            currentLightboxIndex = (currentLightboxIndex - 1 + lightboxImages.length) % lightboxImages.length;
+            document.getElementById('lightbox-img').src = lightboxImages[currentLightboxIndex];
+        });
+
+        document.getElementById('next-lightbox').addEventListener('click', () => {
+            currentLightboxIndex = (currentLightboxIndex + 1) % lightboxImages.length;
+            document.getElementById('lightbox-img').src = lightboxImages[currentLightboxIndex];
+        });
+
+        // Render Reviews
+        function renderReviews(filterStar = 'all') {
+            const container = document.getElementById('reviews-list-container');
+            container.innerHTML = '';
+
+            let filtered = reviewsData;
+            if (filterStar !== 'all') {
+                filtered = reviewsData.filter(r => r.rating == filterStar);
+            }
+
+            if (filtered.length === 0) {
+                container.innerHTML = `<div class="col-span-3 text-center py-6 text-slate-400 text-xs">Belum ada ulasan untuk rating ini.</div>`;
+                return;
+            }
+
+            filtered.forEach(r => {
+                const card = document.createElement('div');
+                card.className = 'bg-slate-50 dark:bg-slate-800 p-6 rounded-2xl border border-slate-200 dark:border-slate-700 flex flex-col justify-between';
+                card.innerHTML = `
+                    <div>
+                        <div class="flex text-gold-400 text-xs mb-3">
+                            ${Array(r.rating).fill('<i class="fa-solid fa-star"></i>').join('')}
+                        </div>
+                        <p class="text-slate-600 dark:text-slate-300 text-xs italic mb-4">"${r.text}"</p>
+                    </div>
+                    <div class="border-t border-slate-200 dark:border-slate-700 pt-3 flex justify-between items-center">
+                        <span class="font-bold text-xs text-emerald-950 dark:text-gold-400">${r.author}</span>
+                        <span class="text-[10px] text-slate-400">${r.villa}</span>
+                    </div>
+                `;
+                container.appendChild(card);
+            });
+        }
+
+        // Initialize Web Application Logic
+        document.addEventListener('DOMContentLoaded', () => {
+            renderVillas(villasData);
+            populateOptions();
+            calculateTotal();
+            renderReviews();
+
+            // Intercept All Anchor Navigation Clicks for Smooth Auto-Scroll with Offset
+            document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+                anchor.addEventListener('click', function (e) {
+                    const targetId = this.getAttribute('href');
+                    if (targetId && targetId !== '#') {
+                        e.preventDefault();
+                        smoothScrollTo(targetId);
+                    }
+                });
+            });
+
+            // ScrollSpy: Update active nav link based on current viewport scroll position
+            const sections = document.querySelectorAll('section[id]');
+            const navLinks = document.querySelectorAll('.nav-link');
+            const navbarHeight = document.getElementById('navbar').offsetHeight || 80;
+
+            function updateScrollSpy() {
+                const scrollY = window.pageYOffset;
+
+                sections.forEach(current => {
+                    const sectionHeight = current.offsetHeight;
+                    const sectionTop = current.offsetTop - navbarHeight - 30;
+                    const sectionId = current.getAttribute('id');
+
+                    if (scrollY >= sectionTop && scrollY < sectionTop + sectionHeight) {
+                        navLinks.forEach(link => {
+                            link.classList.remove('text-gold-400', 'border-gold-400');
+                            if (link.getAttribute('href') === '#' + sectionId) {
+                                link.classList.add('text-gold-400', 'border-gold-400');
+                            }
+                        });
+                    }
+                });
+            }
+
+            window.addEventListener('scroll', updateScrollSpy);
+            updateScrollSpy(); // Initial call
+
+            // Dark Mode Toggle
+            const themeToggleBtn = document.getElementById('theme-toggle');
+            const themeToggleIcon = document.getElementById('theme-toggle-icon');
+            const themeToggleMobile = document.getElementById('theme-toggle-mobile');
+
+            function toggleTheme() {
+                document.documentElement.classList.toggle('dark');
+                const isDark = document.documentElement.classList.contains('dark');
+                themeToggleIcon.className = isDark ? 'fa-solid fa-sun text-lg' : 'fa-solid fa-moon text-lg';
+            }
+
+            themeToggleBtn.addEventListener('click', toggleTheme);
+            themeToggleMobile.addEventListener('click', toggleTheme);
+
+            // Category Filter Tabs
+            document.querySelectorAll('.cat-tab').forEach(tab => {
+                tab.addEventListener('click', (e) => {
+                    document.querySelectorAll('.cat-tab').forEach(t => {
+                        t.className = 'cat-tab px-4 py-2 rounded-xl text-xs font-bold transition-all bg-slate-100 dark:bg-slate-800 text-slate-600 dark:text-slate-300 hover:bg-slate-200';
+                    });
+                    e.target.className = 'cat-tab active px-4 py-2 rounded-xl text-xs font-bold transition-all bg-emerald-800 text-white';
+
+                    const cat = e.target.getAttribute('data-cat');
+                    const filtered = (cat === 'all') ? villasData : villasData.filter(v => v.cat === cat);
+                    renderVillas(filtered);
+                });
+            });
+
+            // Layout Switchers
+            document.getElementById('view-grid-btn').addEventListener('click', () => {
+                renderVillas(villasData, 'grid');
+            });
+            document.getElementById('view-list-btn').addEventListener('click', () => {
+                renderVillas(villasData, 'list');
+            });
+
+            // Sorting Select
+            document.getElementById('sort-villas').addEventListener('change', (e) => {
+                const val = e.target.value;
+                let sorted = [...villasData];
+                if (val === 'price-low') sorted.sort((a, b) => a.price - b.price);
+                if (val === 'price-high') sorted.sort((a, b) => b.price - a.price);
+                if (val === 'capacity') sorted.sort((a, b) => b.capacity - a.capacity);
+                renderVillas(sorted);
+            });
+
+            // Quick Search Form
+            document.getElementById('quick-search-form').addEventListener('submit', (e) => {
+                e.preventDefault();
+                const cin = document.getElementById('search-checkin').value;
+                const cout = document.getElementById('search-checkout').value;
+                const guests = parseInt(document.getElementById('search-guests').value);
+
+                checkinInput.value = cin;
+                checkoutInput.value = cout;
+                document.getElementById('booking-adults').value = guests;
+
+                const filtered = villasData.filter(v => v.capacity >= guests);
+                renderVillas(filtered);
+
+                calculateTotal();
+                document.getElementById('search-summary-text').innerHTML = `<i class="fa-solid fa-circle-check text-emerald-600 mr-1"></i> Ditemukan ${filtered.length} unit villa yang tersedia untuk kapasitas ${guests} orang.`;
+            });
+
+            // Live Change Inputs
+            bookingVillaSelect.addEventListener('change', calculateTotal);
+            checkinInput.addEventListener('change', () => {
+                checkoutInput.min = checkinInput.value;
+                calculateTotal();
+            });
+            checkoutInput.addEventListener('change', calculateTotal);
+            document.getElementById('booking-adults').addEventListener('input', calculateTotal);
+            document.getElementById('booking-children').addEventListener('input', calculateTotal);
+
+            // FAQ Accordion
+            document.querySelectorAll('.faq-toggle').forEach(btn => {
+                btn.addEventListener('click', () => {
+                    const content = btn.nextElementSibling;
+                    const icon = btn.querySelector('i');
+                    content.classList.toggle('hidden');
+                    icon.classList.toggle('rotate-180');
+                });
+            });
+
+            // Review Star Filter
+            document.querySelectorAll('.review-star-btn').forEach(btn => {
+                btn.addEventListener('click', (e) => {
+                    document.querySelectorAll('.review-star-btn').forEach(b => {
+                        b.className = 'review-star-btn px-3.5 py-2 rounded-xl text-xs font-bold bg-slate-100 dark:bg-slate-800 text-slate-600 dark:text-slate-300';
+                    });
+                    const target = e.target.closest('button');
+                    target.className = 'review-star-btn active px-3.5 py-2 rounded-xl text-xs font-bold bg-emerald-800 text-white';
+                    renderReviews(target.getAttribute('data-star'));
+                });
+            });
+
+            // Add Review Form Submit
+            document.getElementById('add-review-form').addEventListener('submit', (e) => {
+                e.preventDefault();
+                const author = document.getElementById('rev-author').value;
+                const rating = parseInt(document.getElementById('rev-rating').value);
+                const text = document.getElementById('rev-text').value;
+
+                reviewsData.unshift({
+                    id: Date.now(),
+                    author,
+                    rating,
+                    text,
+                    villa: 'Tamu Terverifikasi'
+                });
+
+                renderReviews();
+                document.getElementById('add-review-form').reset();
+            });
+
+            // Booking Form Submit to Open Confirmation Modal
+            const bookingForm = document.getElementById('booking-form');
+            const bookingModal = document.getElementById('booking-modal');
+
+            bookingForm.addEventListener('submit', (e) => {
+                e.preventDefault();
+                const calc = calculateTotal();
+
+                document.getElementById('modal-cust-name').innerText = document.getElementById('cust-name').value;
+                document.getElementById('modal-cust-email').innerText = document.getElementById('cust-email').value;
+                document.getElementById('modal-cust-phone').innerText = document.getElementById('cust-phone').value;
+                document.getElementById('modal-cust-notes').innerText = document.getElementById('cust-notes').value || 'Tidak ada';
+
+                document.getElementById('modal-villa-name').innerText = calc.selectedVilla.name;
+                document.getElementById('modal-dates').innerText = `${checkinInput.value} s/d ${checkoutInput.value}`;
+                document.getElementById('modal-stay-info').innerText = `${calc.diffNights} Malam (${calc.totalGuests} Orang)`;
+                document.getElementById('modal-addons').innerText = calc.selectedAddonsList.length > 0 ? calc.selectedAddonsList.join(', ') : 'Tanpa Add-ons';
+
+                document.getElementById('modal-total-price').innerText = `Rp ${calc.grandTotal.toLocaleString('id-ID')}`;
+
+                bookingModal.classList.remove('hidden');
+            });
+
+            document.getElementById('close-modal-btn').addEventListener('click', () => {
+                bookingModal.classList.add('hidden');
+            });
+
+            // WhatsApp Redirect
+            document.getElementById('confirm-wa-btn').addEventListener('click', () => {
+                const name = document.getElementById('cust-name').value;
+                const phone = document.getElementById('cust-phone').value;
+                const villaName = document.getElementById('modal-villa-name').innerText;
+                const dates = document.getElementById('modal-dates').innerText;
+                const stayInfo = document.getElementById('modal-stay-info').innerText;
+                const addons = document.getElementById('modal-addons').innerText;
+                const total = document.getElementById('modal-total-price').innerText;
+                const paymentMethod = document.querySelector('input[name="payment-method"]:checked').value;
+
+                const message = `Halo Admin Villa Thursina,%0A%0ASaya ingin mengkonfirmasi reservasi pemesanan villa berikut:%0A%0A*Rincian Pemesan:*%0A• Nama: ${name}%0A• No. WA: ${phone}%0A%0A*Rincian Unit & Tanggal:*%0A• Unit Villa: ${villaName}%0A• Tanggal: ${dates}%0A• Durasi & Tamu: ${stayInfo}%0A• Add-ons Tambahan: ${addons}%0A• Metode Pembayaran: ${paymentMethod}%0A%0A*Total Bayar:* ${total}%0A%0AMohon instruksi pembayaran selanjutnya. Terima kasih!`;
+
+                window.open(`https://wa.me/6281234567890?text=${message}`, '_blank');
+            });
+
+            // Mobile Nav Toggle
+            document.getElementById('mobile-menu-btn').addEventListener('click', () => {
+                document.getElementById('mobile-menu').classList.toggle('hidden');
+            });
+            document.querySelectorAll('.mobile-link').forEach(l => {
+                l.addEventListener('click', () => {
+                    document.getElementById('mobile-menu').classList.add('hidden');
+                });
+            });
+        });
+    </script>
+</body>
+</html>
